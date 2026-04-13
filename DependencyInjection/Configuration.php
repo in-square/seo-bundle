@@ -17,7 +17,7 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('insquare_seo');
+        $treeBuilder = new TreeBuilder('in_square_seo');
         $rootNode = $treeBuilder->getRootNode();
 
         $this->configureGeneralTree($rootNode);

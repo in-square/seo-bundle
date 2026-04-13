@@ -5,17 +5,17 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="insquare_seo.configurator.basic" class="InSquare\SeoBundle\Seo\Basic\BasicSeoConfigurator">
-            <argument>%insquare_seo.basic%</argument>
+        <service id="in_square_seo.configurator.basic" class="InSquare\SeoBundle\Seo\Basic\BasicSeoConfigurator">
+            <argument>%in_square_seo.basic%</argument>
         </service>
 
-        <service id="insquare_seo.generator.basic" class="InSquare\SeoBundle\Seo\Basic\BasicSeoGenerator">
-            <argument id="insquare_seo.builder" type="service"/>
-            <configurator service="insquare_seo.configurator.basic" method="configure" />
-            <tag name="insquare_seo.generator" alias="basic"/>
+        <service id="in_square_seo.generator.basic" class="InSquare\SeoBundle\Seo\Basic\BasicSeoGenerator">
+            <argument id="in_square_seo.builder" type="service"/>
+            <configurator service="in_square_seo.configurator.basic" method="configure" />
+            <tag name="in_square_seo.generator" alias="basic"/>
         </service>
 
         <!-- for autowiring -->
-        <service id="InSquare\SeoBundle\Seo\Basic\BasicSeoGenerator" alias="insquare_seo.generator.basic" />
+        <service id="InSquare\SeoBundle\Seo\Basic\BasicSeoGenerator" alias="in_square_seo.generator.basic" />
     </services>
 </container>

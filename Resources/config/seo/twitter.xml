@@ -5,17 +5,17 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="insquare_seo.configurator.twitter" class="InSquare\SeoBundle\Seo\Twitter\TwitterSeoConfigurator">
-            <argument>%insquare_seo.twitter%</argument>
+        <service id="in_square_seo.configurator.twitter" class="InSquare\SeoBundle\Seo\Twitter\TwitterSeoConfigurator">
+            <argument>%in_square_seo.twitter%</argument>
         </service>
 
-        <service id="insquare_seo.generator.twitter" class="InSquare\SeoBundle\Seo\Twitter\TwitterSeoGenerator">
-            <argument id="insquare_seo.builder" type="service"/>
-            <configurator service="insquare_seo.configurator.twitter" method="configure" />
-            <tag name="insquare_seo.generator" alias="twitter"/>
+        <service id="in_square_seo.generator.twitter" class="InSquare\SeoBundle\Seo\Twitter\TwitterSeoGenerator">
+            <argument id="in_square_seo.builder" type="service"/>
+            <configurator service="in_square_seo.configurator.twitter" method="configure" />
+            <tag name="in_square_seo.generator" alias="twitter"/>
         </service>
 
         <!-- for autowiring -->
-        <service id="InSquare\SeoBundle\Seo\Twitter\TwitterSeoGenerator" alias="insquare_seo.generator.twitter" />
+        <service id="InSquare\SeoBundle\Seo\Twitter\TwitterSeoGenerator" alias="in_square_seo.generator.twitter" />
     </services>
 </container>

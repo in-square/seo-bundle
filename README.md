@@ -12,7 +12,7 @@ and to let you configure less common ones with ease.
 ## Compatibility and Migration
 - Supported stack: Symfony `7.3+`, PHP `8.3+`, Twig `3+`.
 - Backward-compatibility Twig alias `leogout_seo()` is intentionally removed.
-- Use `insquare_seo()` and `insquare_seo('alias')` only.
+- Use `render_seo_tags()` and `render_seo_tags('alias')` only.
 - Migration checklist: [`docs/migration-plan.md`](docs/migration-plan.md).
 
 ## Installation
@@ -41,9 +41,9 @@ There are four sections in the config:
 
 See "Configuration reference" to get the whole configuration.
 
-**In your `config/packages/insquare_seo.yaml`:**
+**In your `config/packages/in_square_seo.yaml`:**
 ```yml
-insquare_seo:
+in_square_seo:
     general:
         title: Default title
         description: Default description.
@@ -62,11 +62,11 @@ insquare_seo:
 **In your view:**
 ```twig
 <head>
-    {{ insquare_seo() }}
+    {{ render_seo_tags() }}
 </head>
 ```
-**NOTE:** _You can provide a generator name to the `insquare_seo()` twig method to render it specifically.
-For example, to render the `basic` seo generator, you can use `insquare_seo('basic')`._
+**NOTE:** _You can provide a generator name to the `render_seo_tags()` twig method to render it specifically.
+For example, to render the `basic` seo generator, you can use `render_seo_tags('basic')`._
 
 
 **The result:**
@@ -92,7 +92,7 @@ However, if you want to use the associated generators without configuring any de
 (or configuring only the general ones), you can use this notation:_
 
 ```yml
-insquare_seo:
+in_square_seo:
    general:
        title: Default title
        description: Default description.
@@ -107,7 +107,7 @@ insquare_seo:
 
 You can get the `'[basic|twitter|og]` as a service to set or override any values.
 Each configuration value can be overridden using a setter of the following form:
-`$this->get('insquare_seo.provider.generator')->get('` **[basic|twitter|og]** `')->set` **[config field name]** `(` **[value]** `)`
+`$this->get('in_square_seo.provider.generator')->get('` **[basic|twitter|og]** `')->set` **[config field name]** `(` **[value]** `)`
 
 For example, if you want to change `title` and `robots` from `basic`, you can do this:
 ```php
@@ -115,7 +115,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $this->get('insquare_seo.provider.generator')->get('basic')
+        $this->get('in_square_seo.provider.generator')->get('basic')
             ->setTitle('Title set in controller')
             ->setRobots(true, false); // they can be chained
         
@@ -174,7 +174,7 @@ class MyController extends Controller
             ->addKeyword('ho')
             ->addKeyword('let's go!');
         
-        $this->get('insquare_seo.provider.generator')->get('basic')->fromResource($myResource);
+        $this->get('in_square_seo.provider.generator')->get('basic')->fromResource($myResource);
         
         return $this->render('MyController:Default:index.html.twig');
     }
@@ -184,7 +184,7 @@ class MyController extends Controller
 **In your view:**
 ```twig
 <head>
-    {{ insquare_seo('basic') }}
+    {{ render_seo_tags('basic') }}
 </head>
 ```
 
@@ -239,14 +239,14 @@ class MyTagsGenerator extends AbstractSeoGenerator
 }
 ```
 
-Then, register it as a service and add it a `insquare_seo.generator` tag and a custom alias.
-Don't forget the `@insquare_seo.builder` dependency:
+Then, register it as a service and add it a `in_square_seo.generator` tag and a custom alias.
+Don't forget the `@in_square_seo.builder` dependency:
 ```yaml
 services:
     app.seo_generator.my_tags:
         class:     AppBundle\Generator\MyTagsGenerator
-        arguments: [ '@insquare_seo.builder' ] # This is required
-        tags: { name: insquare_seo.generator, alias: my_tags }
+        arguments: [ '@in_square_seo.builder' ] # This is required
+        tags: { name: in_square_seo.generator, alias: my_tags }
 ```
 
 That's it, now you can use it alongside the others:
@@ -257,7 +257,7 @@ class MyController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $this->get('insquare_seo.provider.generator')->get('my_tags')->setMyTag('cool');
+        $this->get('in_square_seo.provider.generator')->get('my_tags')->setMyTag('cool');
         
         return $this->render('MyController:Default:index.html.twig');
     }
@@ -267,7 +267,7 @@ class MyController extends Controller
 **In your view:**
 ```twig
 <head>
-    {{ insquare_seo('my_tags') }}
+    {{ render_seo_tags('my_tags') }}
 </head>
 ```
 
@@ -302,7 +302,7 @@ This renders, for example:
 
 ## Configuration reference
 ```yml
-insquare_seo:
+in_square_seo:
     general:
         title: Default title
         description: Default description.

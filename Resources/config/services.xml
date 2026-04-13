@@ -5,18 +5,18 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="insquare_seo.provider.generator" class="InSquare\SeoBundle\Provider\SeoGeneratorProvider" public="true" />
+        <service id="in_square_seo.provider.generator" class="InSquare\SeoBundle\Provider\SeoGeneratorProvider" public="true" />
 
-        <service id="insquare_seo.tag_factory" class="InSquare\SeoBundle\Factory\TagFactory"/>
-        <service id="insquare_seo.builder" class="InSquare\SeoBundle\Builder\TagBuilder" shared="false">
-            <argument id="insquare_seo.tag_factory" type="service"/>
+        <service id="in_square_seo.tag_factory" class="InSquare\SeoBundle\Factory\TagFactory"/>
+        <service id="in_square_seo.builder" class="InSquare\SeoBundle\Builder\TagBuilder" shared="false">
+            <argument id="in_square_seo.tag_factory" type="service"/>
         </service>
-        <service id="insquare_seo.twig.seo_extension" class="InSquare\SeoBundle\Twig\SeoExtension">
-            <argument id="insquare_seo.provider.generator" type="service"/>
+        <service id="in_square_seo.twig.seo_extension" class="InSquare\SeoBundle\Twig\SeoExtension">
+            <argument id="in_square_seo.provider.generator" type="service"/>
             <tag name="twig.extension"/>
         </service>
 
         <!-- for autowiring -->
-        <service id="InSquare\SeoBundle\Provider\SeoGeneratorProvider" alias="insquare_seo.provider.generator" />
+        <service id="InSquare\SeoBundle\Provider\SeoGeneratorProvider" alias="in_square_seo.provider.generator" />
     </services>
 </container>

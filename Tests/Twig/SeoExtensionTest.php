@@ -22,7 +22,7 @@ class SeoExtensionTest extends TestCase
     protected function setUp(): void
     {
         $loader = new ArrayLoader([
-            'index' => '<!-- start -->{{ insquare_seo() }}<!-- end -->'
+            'index' => '<!-- start -->{{ render_seo_tags() }}<!-- end -->'
         ]);
 
         $tagBuilder = new TagBuilder(new TagFactory());
@@ -57,7 +57,7 @@ class SeoExtensionTest extends TestCase
     public function testSeoTwigFunctionRendersCustomLinkAttributeThroughProvider()
     {
         $loader = new ArrayLoader([
-            'alternate' => '<!-- start -->{{ insquare_seo(\'alternate\') }}<!-- end -->'
+            'alternate' => '<!-- start -->{{ render_seo_tags(\'alternate\') }}<!-- end -->'
         ]);
 
         $provider = new SeoGeneratorProvider();
@@ -92,7 +92,7 @@ class SeoExtensionTest extends TestCase
     public function testSeoTwigFunctionWithoutAliasRendersAllGeneratorsIncludingCustomAttributes()
     {
         $loader = new ArrayLoader([
-            'all' => '<!-- start -->{{ insquare_seo() }}<!-- end -->'
+            'all' => '<!-- start -->{{ render_seo_tags() }}<!-- end -->'
         ]);
 
         $provider = new SeoGeneratorProvider();

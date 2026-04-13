@@ -5,18 +5,18 @@ Migrate from the legacy `leogout/seo-bundle` to the local `InSquare/SeoBundle` p
 
 ## Scope of Changes
 1. Twig function:
-- replace all `{{ leogout_seo(...) }}` usages with `{{ insquare_seo(...) }}`.
-- replace all `{{ leogout_seo() }}` usages with `{{ insquare_seo() }}`.
+- replace all `{{ leogout_seo(...) }}` usages with `{{ render_seo_tags(...) }}`.
+- replace all `{{ leogout_seo() }}` usages with `{{ render_seo_tags() }}`.
 
 2. Service identifiers:
-- replace the `leogout_seo.` prefix with `insquare_seo.` in:
+- replace the `leogout_seo.` prefix with `in_square_seo.` in:
   - service configuration (`services.yaml`, `services.xml`, and any bundle config),
   - controllers/services using `container->get(...)`,
   - integration tests.
 
 3. Bundle configuration:
-- ensure configuration is active under the `insquare_seo:` root key.
-- move settings from `leogout_seo:` (if present) to `insquare_seo:`.
+- ensure configuration is active under the `in_square_seo:` root key.
+- move settings from `leogout_seo:` (if present) to `in_square_seo:`.
 
 4. Bundle registration:
 - verify `config/bundles.php` contains:
@@ -27,6 +27,6 @@ Migrate from the legacy `leogout/seo-bundle` to the local `InSquare/SeoBundle` p
 2. Run unit and functional tests.
 3. Perform smoke tests on pages rendering SEO tags inside `<head>`.
 4. Validate rendered HTML:
-- `{{ insquare_seo() }}` renders the full set of tags.
-- `{{ insquare_seo('alias') }}` renders only the selected generator.
+- `{{ render_seo_tags() }}` renders the full set of tags.
+- `{{ render_seo_tags('alias') }}` renders only the selected generator.
 

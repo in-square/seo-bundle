@@ -26,11 +26,11 @@ class SeoGeneratorPassTest extends TestCase
         $this->expectExceptionMessage('Seo generator services cannot be abstract but "id" is.');
 
         $container = new ContainerBuilder();
-        $container->setDefinition('insquare_seo.provider.generator', new Definition(SeoGeneratorProvider::class));
+        $container->setDefinition('in_square_seo.provider.generator', new Definition(SeoGeneratorProvider::class));
 
         $generatorDefinition = new Definition(BasicSeoGenerator::class);
         $generatorDefinition->setAbstract(true);
-        $generatorDefinition->addTag('insquare_seo.generator', ['alias' => 'foo']);
+        $generatorDefinition->addTag('in_square_seo.generator', ['alias' => 'foo']);
         $container->setDefinition('id', $generatorDefinition);
 
         (new SeoGeneratorPass())->process($container);
@@ -39,13 +39,13 @@ class SeoGeneratorPassTest extends TestCase
     public function testFailsWhenAliasIsMissing()
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Tag "insquare_seo.generator" requires an "alias" field in "id" definition.');
+        $this->expectExceptionMessage('Tag "in_square_seo.generator" requires an "alias" field in "id" definition.');
 
         $container = new ContainerBuilder();
-        $container->setDefinition('insquare_seo.provider.generator', new Definition(SeoGeneratorProvider::class));
+        $container->setDefinition('in_square_seo.provider.generator', new Definition(SeoGeneratorProvider::class));
 
         $generatorDefinition = new Definition(BasicSeoGenerator::class);
-        $generatorDefinition->addTag('insquare_seo.generator', ['alias' => '']);
+        $generatorDefinition->addTag('in_square_seo.generator', ['alias' => '']);
         $container->setDefinition('id', $generatorDefinition);
 
         (new SeoGeneratorPass())->process($container);
@@ -55,11 +55,11 @@ class SeoGeneratorPassTest extends TestCase
     {
         $container = new ContainerBuilder();
         $providerDefinition = new Definition(SeoGeneratorProvider::class);
-        $container->setDefinition('insquare_seo.provider.generator', $providerDefinition);
+        $container->setDefinition('in_square_seo.provider.generator', $providerDefinition);
 
         $generatorDefinition = new Definition(BasicSeoGenerator::class);
         $generatorDefinition->setPublic(false);
-        $generatorDefinition->addTag('insquare_seo.generator', ['alias' => 'basic']);
+        $generatorDefinition->addTag('in_square_seo.generator', ['alias' => 'basic']);
         $container->setDefinition('id', $generatorDefinition);
 
         (new SeoGeneratorPass())->process($container);

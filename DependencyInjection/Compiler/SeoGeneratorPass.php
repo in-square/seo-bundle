@@ -17,8 +17,8 @@ class SeoGeneratorPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-        $definition = $container->getDefinition('insquare_seo.provider.generator');
-        $taggedServices = $container->findTaggedServiceIds('insquare_seo.generator');
+        $definition = $container->getDefinition('in_square_seo.provider.generator');
+        $taggedServices = $container->findTaggedServiceIds('in_square_seo.generator');
 
         foreach ($taggedServices as $id => $tags) {
             $generatorDefinition = $container->getDefinition($id);
@@ -27,7 +27,7 @@ class SeoGeneratorPass implements CompilerPassInterface
             }
             foreach ($tags as $attributes) {
                 if (empty($attributes['alias'])) {
-                    throw new \InvalidArgumentException(sprintf('Tag "insquare_seo.generator" requires an "alias" field in "%s" definition.', $id));
+                    throw new \InvalidArgumentException(sprintf('Tag "in_square_seo.generator" requires an "alias" field in "%s" definition.', $id));
                 }
 
                 $definition->addMethodCall('set', [$attributes['alias'], new Reference($id)]);

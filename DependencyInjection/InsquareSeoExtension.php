@@ -38,10 +38,6 @@ class InsquareSeoExtension extends Extension
      * Checks if the configuration with this name isn't empty.
      * Creates a parameter and loads a configuration file of the given configuration name.
      *
-     * @param string $configName
-     * @param ContainerBuilder $container
-     * @param XmlFileLoader $loader
-     * @param array $config
      * @throws Throwable
      */
     private function loadIfConfigured(
@@ -49,16 +45,18 @@ class InsquareSeoExtension extends Extension
         ContainerBuilder $container,
         XmlFileLoader $loader,
         array $config
-    ): void
-    {
+    ): void {
         if (!isset($config[$configName])) {
             return;
         }
-        $config = array_merge($config['general'], $config[$configName]);
+
+        $mergedConfig = array_merge($config['general'], $config[$configName]);
+
         $container->setParameter(
-            sprintf('insquare_seo.%s', $configName),
-            $config
+            sprintf('in_square_seo.%s', $configName),
+            $mergedConfig
         );
+
         $loader->load(sprintf('seo/%s.xml', $configName));
     }
 }

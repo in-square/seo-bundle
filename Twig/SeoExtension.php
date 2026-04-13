@@ -38,7 +38,7 @@ class SeoExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('insquare_seo', [$this, 'seo'], ['is_safe' => ['html']]),
+            new TwigFunction('render_seo_tags', [$this, 'seo'], ['is_safe' => ['html']]),
         ];
     }
 
