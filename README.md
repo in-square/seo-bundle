@@ -18,7 +18,7 @@ and to let you configure less common ones with ease.
 ## Installation
 Install the bundle with the command:
 
-`composer require insquare/seo-bundle`
+`composer require in-square/seo-bundle`
 
 Register the bundle in `config/bundles.php`:
 ```php

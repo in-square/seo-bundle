@@ -1,5 +1,5 @@
 {
-  "name": "insquare/seo-bundle",
+  "name": "in-square/seo-bundle",
   "description": "Fork of leogout/seo-bundle with Symfony 7 support and extensible SEO tag attributes.",
   "keywords": [
     "seo",
