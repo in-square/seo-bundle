@@ -17,6 +17,11 @@ use Throwable;
  */
 class InsquareSeoExtension extends Extension
 {
+    public function getAlias(): string
+    {
+        return 'in_square_seo';
+    }
+
     /**
      * @throws Throwable
      */
